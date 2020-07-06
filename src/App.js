@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Lista from './Components/Lista'
 import './App.css'
 
 class Todo extends Component {
@@ -16,7 +17,6 @@ class Todo extends Component {
     this.handleInput = this.handleInput.bind(this);
     this.adicionaTarefa = this.adicionaTarefa.bind(this);
     this.deletaTarefa = this.deletaTarefa.bind(this);
-    this.alterarTarefa = this.alterarTarefa.bind(this)
   }
 
   componentDidUpdate() {
@@ -25,7 +25,7 @@ class Todo extends Component {
 
   componentDidMount() {
     const listaTarefas = JSON.parse(localStorage.getItem('tarefas'));
-    if(listaTarefas !== null) {
+    if (listaTarefas !== null) {
       this.setState({
         lista: listaTarefas
       })
@@ -34,15 +34,7 @@ class Todo extends Component {
 
   handleInput = e => {
     this.setState({
-      tarefa: {id: 0, texto: e.target.value, completo: false, editar: false }
-    })
-  }
-
-  handleEditInput = e => {
-    const {name, value} = e.target;
-
-    this.setState({
-      [name]: value
+      tarefa: { id: 0, texto: e.target.value, completo: false }
     })
   }
 
@@ -51,7 +43,7 @@ class Todo extends Component {
 
     const lista = this.state.lista;
 
-    if(this.state.tarefa.texto !== '') {
+    if (this.state.tarefa.texto !== '') {
       lista.push({
         id: lista.length,
         texto: this.state.tarefa.texto,
@@ -78,35 +70,38 @@ class Todo extends Component {
     })
   }
 
-  alterarTarefa = id => e => {
-    e.preventDefault();
+  atualizarLista = tarefa => {
+    let lista = [...this.state.lista];
+    lista.map((t, index) => {
+      if (tarefa.id === t.id) {
+        lista[index] = tarefa
+      } return '';
+    });
 
-    this.state.lista.map(i => {
-      return i === id ? this.setState({ tarefa: { editar: true }}) : this.setState({ tarefa: { editar: false }})
-    })
+    localStorage.setItem('tarefas', JSON.stringify(lista));
 
     this.setState({
-      tarefa: { editar: true }
+      lista: lista
     })
-    
   }
 
   render() {
 
-    return(
-      <div className='App'>
-        <h1>Todo App</h1>
-        <br/>
-        <input value={this.state.tarefa.texto} onChange={this.handleInput} placeholder='Nova Tarefa' />
-        <button onClick={this.adicionaTarefa}>Adicionar</button>
-        <div>
-          {this.state.lista.map(tarefa => {
-              return <input name='tarefa' value={tarefa.texto} onChange={this.handleInput} />
-          })}
+    return (
+      <div className='app'>
+        <h1 className='titulo'>Todo App</h1>
+        <form onSubmit={this.adicionaTarefa} className='form'>
+            <input className='task-input' type='text' value={this.state.tarefa.texto} onChange={this.handleInput} placeholder='Nova Tarefa' required />
+          <div className='add-tarefa'>
+            <button className='add-task-btn' type='submit' >Adicionar</button>
+          </div>
+        </form>
+        <div className='lista'>
+          <Lista className='list-item' atualizarLista={this.atualizarLista} deletaTarefa={this.deletaTarefa} lista={this.state.lista} />
         </div>
       </div>
     )
   }
 }
 
-export default Todo
+export default Todo;

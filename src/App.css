@@ -1,38 +1,315 @@
-.App {
+/* .background {
+  background-color: white;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} */
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.app {
+  background-color: #292f38;
+  width: 100%;
+  height: 100vh;
+}
+
+.titulo {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.task-input {
+  width: 70%;
+  min-width: 250px;
+  padding: 15px 10px 10px 20px;
+  margin-right: 10px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+  color: #ccc;
+  background-color: #1d222b;
+  border: 1px solid #444;
+  outline: none;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.add-tarefa {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.add-task-btn {
+  min-width: 150px;
+  height: 30px;
+  background-color: #24169b;
+  color: #ccc;
+  border: none;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  border-radius: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  margin-top: 30px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.radio-lista {
+  text-align: center;
+  margin-bottom: 20px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.radio {
+  margin-left: 10px;
+}
+
+.input-filtro {
+  width: 20%;
+  min-width: 250px;
+  padding: 10px 10px 10px 20px;
+  margin-left: 15px;
+  margin-right: 10px;
+  margin-bottom: 20px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+  color: #ccc;
+  background-color: #1d222b;
+  border: 1px solid #444;
+  outline: none;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.item-lista {
+  color: rgb(233, 227, 227);
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+  padding-bottom: 5px;
+}
+
+.buttons {
+  margin-right: 30px;
+}
+
+.tarefa-texto {
+  display: flex;
+}
+
+.tarefa-span {
+  text-align: left;
+  margin-left: 10px;
+  width: 80%;
+}
+
+.lista-tarefas {
+  margin-left: 20px;
+}
+
+.checkbox {
+  margin-bottom: 10px;
+  width: 20px;
+  height: 20px;
+}
+
+.btn-icon {
+  font-size: 16px;
+  color: #bbb;
+  margin-right: 5px;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+
+/* .App {
+  text-align: center;
+}
+
+.container {
+  background:rgb(28, 26, 128);
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.app-wrapper {
+  background-color: #292f38;
+  width: 25%;
+  min-width: 450px;
+  height: 600px;
+  padding: 30px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+}
+
+.header h1 {
+  color: #ccc;
+  font-weight: 300;
+  text-align: center;
+  margin: 50px 20px 60px 20px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.main {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: space-between;
+  margin-bottom: 50px;
+  width: 100%;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.list {
+  width: 90%;
+  margin: auto;
+  max-height: 300px;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.lista {
+  width: 90%;
+  margin: auto;
+  max-height: 300px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.task-input {
+  width: 350px;
+  min-width: 250px;
+  padding: 15px 10px 10px 20px;
+  margin-right: 10px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+  color: #ccc;
+  background-color: #1d222b;
+  border: 1px solid #444;
+  outline: none;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.add-task-btn {
+  min-width: 150px;
+  height: 30px;
+  background-color: #24169b;
+  color: #ccc;
+  border: none;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  border-radius: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  margin-top: 30px;
+}
+
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+  padding-bottom: 5px;
+}
+
+.list-item span {
   color: white;
+  text-align: left;
 }
 
-.App-link {
-  color: #61dafb;
+.task-btn {
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  outline: none;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.btn-delete {
+  font-size: 16px;
+  color: #bbb;
+  margin-right: 5px;
 }
+
+.btn-edit {
+  font-size: 16px;
+  color: #bbb;
+  margin-right: 20px;
+}
+
+.btn-save {
+  font-size: 18px;
+  color: #bbb;
+  margin-right: 20px;
+  padding-top: 12px
+}
+
+.clear-btn {
+  width: 100px;
+  height: 35px;
+  background-color: #790e43;
+  color: #ccc;
+  border: none;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  border-radius: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  outline: none;
+  cursor: pointer;
+}
+
+.radio-lista {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.input-filtro {
+  width: 200px;
+  min-width: 250px;
+  padding: 15px 10px 10px 20px;
+  margin-right: 10px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+  color: #ccc;
+  background-color: #1d222b;
+  border: 1px solid #444;
+  outline: none;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.task-input-value {
+  width: 350px;
+  min-width: 250px;
+  padding: 15px 10px 10px 20px;
+  margin-right: 10px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+  color: #ccc;
+  background-color: #1d222b;
+  border: 1px solid #444;
+  outline: none;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.tarefa-texto {
+  padding-right: 180px;
+}
+
+.checkbox {
+  width: 20px;
+  height: 20px;
+} */
