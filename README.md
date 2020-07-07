@@ -4,5 +4,7 @@ Para poder testar basta cloná-lo utilizando o git clone https://github.com/otav
 
 ## npm install
 
-Quando já estiver com os arquivos salvo em sua máquina local, use o comando npm install para baixar as dependeências necessárias.
+Quando já estiver com os arquivos salvo em sua máquina local, use o comando npm install para baixar as dependências necessárias.
+
+## Ready to go!
 

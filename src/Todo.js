@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Lista from './Components/Lista'
-import './App.css'
+import './Todo.css'
 
 class Todo extends Component {
   constructor(props) {
@@ -43,8 +43,7 @@ class Todo extends Component {
       lista.push({
         id: lista.length,
         texto: this.state.tarefa.texto,
-        completo: this.state.tarefa.completo,
-        editar: this.state.tarefa.editar
+        completo: this.state.tarefa.completo
       })
 
       this.setState({
@@ -71,25 +70,36 @@ class Todo extends Component {
     lista.map((t, index) => {
       if (tarefa.texto === t.texto) {
         lista[index] = tarefa
-      } return '';
+      } return 'Erro';
     });
-
-    localStorage.setItem('tarefas', JSON.stringify(lista));
 
     this.setState({
       lista: lista
     })
+
+    localStorage.setItem('tarefas', JSON.stringify(lista));
+
   }
 
   render() {
 
     return (
       <div className='app'>
-        <h1 className='titulo'>Todo App</h1>
+        <h1 className='titulo'>
+          Todo List
+        </h1>
         <form onSubmit={this.adicionaTarefa} className='form'>
-            <input className='tarefa-input' type='text' value={this.state.tarefa.texto} onChange={this.handleInput} placeholder='Nova Tarefa' required />
+          <input
+            className='tarefa-input'
+            type='text'
+            value={this.state.tarefa.texto}
+            onChange={this.handleInput}
+            placeholder='Nova Tarefa'
+            required />
           <div className='add-tarefa'>
-            <button className='add-tarefa-btn' type='submit' >Adicionar</button>
+            <button className='add-tarefa-btn' type='submit' >
+              Adicionar
+            </button>
           </div>
         </form>
         <div>

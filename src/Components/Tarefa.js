@@ -14,7 +14,7 @@ class Tarefa extends Component {
             visivel: {
                 display: 'inline'
             },
-            tarefa: this.props.tarefa
+            tarefa: this.props.tarefa,
         }
     }
 
@@ -35,7 +35,6 @@ class Tarefa extends Component {
 
         this.props.atualizarLista(this.state.tarefa)
     }
-
 
     //Toggle para tornar o input e botao de salvar visiveis, e também desaparecer os outros botões.
     toggleEdit = e => {
@@ -78,7 +77,7 @@ class Tarefa extends Component {
                     onChange={this.handleChange}
                 />
                 <div className='tarefa-span'>
-                    <span className='tarefa-texto' style={this.state.visivel}>{this.state.tarefa.texto}</span>
+                    <span className='tarefa-texto' style={this.state.visivel}>{tarefa.texto}</span>
                 </div>
                 <div className='buttons'>
                     <button

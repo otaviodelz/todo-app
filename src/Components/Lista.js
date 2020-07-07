@@ -7,7 +7,7 @@ class Lista extends Component {
 
         this.state = {
             options: 'all',
-            filtroTexto: ''
+            filtroTexto: '',
         }
 
         this.handleChange = this.handleChange.bind(this)
@@ -46,9 +46,9 @@ class Lista extends Component {
                             const filtro = tarefa.texto.toLowerCase().includes(this.state.filtroTexto.toLowerCase());
                             if (this.state.options === 'all' && filtro) {
                                 return <Tarefa key={index} atualizarLista={atualizarLista} deletaTarefa={deletaTarefa} tarefa={tarefa} />
-                            } else if (this.state.options === 'todo' && tarefa.completo === false) {
+                            } else if (this.state.options === 'todo' && tarefa.completo === false && filtro) {
                                 return <Tarefa key={index} atualizarLista={atualizarLista} deletaTarefa={deletaTarefa} tarefa={tarefa} />
-                            } else if ((this.state.options === 'done' && tarefa.completo === true)) {
+                            } else if (this.state.options === 'done' && tarefa.completo === true && filtro) {
                                 return <Tarefa key={index} atualizarLista={atualizarLista} deletaTarefa={deletaTarefa} tarefa={tarefa} />
                             } return '';
                         })}
