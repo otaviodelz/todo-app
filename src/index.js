@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Todo from './App';
+import Todo from './Todo';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(

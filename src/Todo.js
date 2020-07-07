@@ -19,10 +19,6 @@ class Todo extends Component {
     this.deletaTarefa = this.deletaTarefa.bind(this);
   }
 
-  componentDidUpdate() {
-    localStorage.setItem('tarefas', JSON.stringify(this.state.lista));
-  }
-
   componentDidMount() {
     const listaTarefas = JSON.parse(localStorage.getItem('tarefas'));
     if (listaTarefas !== null) {
@@ -59,11 +55,11 @@ class Todo extends Component {
     }
   }
 
-  deletaTarefa = id => e => {
+  deletaTarefa = texto => e => {
     e.preventDefault();
 
     const lista = [...this.state.lista];
-    const listaAlterada = lista.filter(tarefa => tarefa.id !== id);
+    const listaAlterada = lista.filter(tarefa => tarefa.texto !== texto);
 
     this.setState({
       lista: listaAlterada
@@ -73,7 +69,7 @@ class Todo extends Component {
   atualizarLista = tarefa => {
     let lista = [...this.state.lista];
     lista.map((t, index) => {
-      if (tarefa.id === t.id) {
+      if (tarefa.texto === t.texto) {
         lista[index] = tarefa
       } return '';
     });
@@ -91,13 +87,13 @@ class Todo extends Component {
       <div className='app'>
         <h1 className='titulo'>Todo App</h1>
         <form onSubmit={this.adicionaTarefa} className='form'>
-            <input className='task-input' type='text' value={this.state.tarefa.texto} onChange={this.handleInput} placeholder='Nova Tarefa' required />
+            <input className='tarefa-input' type='text' value={this.state.tarefa.texto} onChange={this.handleInput} placeholder='Nova Tarefa' required />
           <div className='add-tarefa'>
-            <button className='add-task-btn' type='submit' >Adicionar</button>
+            <button className='add-tarefa-btn' type='submit' >Adicionar</button>
           </div>
         </form>
-        <div className='lista'>
-          <Lista className='list-item' atualizarLista={this.atualizarLista} deletaTarefa={this.deletaTarefa} lista={this.state.lista} />
+        <div>
+          <Lista atualizarLista={this.atualizarLista} deletaTarefa={this.deletaTarefa} lista={this.state.lista} />
         </div>
       </div>
     )

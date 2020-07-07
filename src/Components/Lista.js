@@ -40,16 +40,16 @@ class Lista extends Component {
                     <input className='input-filtro' type='text' name='filtroTexto' onChange={this.handleChange} placeholder='Buscar por nome' ></input>
                 </div>
                 <hr></hr>
-                <div>
+                <div className='lista-div'>
                     <ul className='lista-tarefas'>
-                        {lista.map(tarefa => {
+                        {lista.map((tarefa, index) => {
                             const filtro = tarefa.texto.toLowerCase().includes(this.state.filtroTexto.toLowerCase());
                             if (this.state.options === 'all' && filtro) {
-                                return <Tarefa atualizarLista={atualizarLista} deletaTarefa={deletaTarefa} tarefa={tarefa} />
+                                return <Tarefa key={index} atualizarLista={atualizarLista} deletaTarefa={deletaTarefa} tarefa={tarefa} />
                             } else if (this.state.options === 'todo' && tarefa.completo === false) {
-                                return <Tarefa atualizarLista={atualizarLista} deletaTarefa={deletaTarefa} tarefa={tarefa} />
+                                return <Tarefa key={index} atualizarLista={atualizarLista} deletaTarefa={deletaTarefa} tarefa={tarefa} />
                             } else if ((this.state.options === 'done' && tarefa.completo === true)) {
-                                return <Tarefa atualizarLista={atualizarLista} deletaTarefa={deletaTarefa} tarefa={tarefa} />
+                                return <Tarefa key={index} atualizarLista={atualizarLista} deletaTarefa={deletaTarefa} tarefa={tarefa} />
                             } return '';
                         })}
                     </ul>
@@ -61,3 +61,5 @@ class Lista extends Component {
 }
 
 export default Lista;
+
+

@@ -8,17 +8,13 @@ class Tarefa extends Component {
         super(props);
 
         this.state = {
-            stateOne: {
+            invisivel: {
                 display: 'none'
             },
-            stateTwo: {
+            visivel: {
                 display: 'inline'
             },
-            tarefa: {
-                texto: this.props.tarefa.texto,
-                id: this.props.tarefa.id,
-                completo: this.props.tarefa.completo
-            }
+            tarefa: this.props.tarefa
         }
     }
 
@@ -40,15 +36,18 @@ class Tarefa extends Component {
         this.props.atualizarLista(this.state.tarefa)
     }
 
+
+    //Toggle para tornar o input e botao de salvar visiveis, e também desaparecer os outros botões.
     toggleEdit = e => {
         e.preventDefault();
 
         this.setState({
-            stateOne: { display: (this.state.stateOne.display === 'none') ? 'inline' : 'none' },
-            stateTwo: { display: (this.state.stateTwo.display === 'none') ? 'inline' : 'none' }
+            invisivel: { display: (this.state.invisivel.display === 'none') ? 'inline' : 'none' },
+            visivel: { display: (this.state.visivel.display === 'none') ? 'inline' : 'none' }
         })
     }
 
+    //Ativa o toggle e atualiza a lista com o novo valor
     saveEdit = e => {
         e.preventDefault();
         this.toggleEdit(e);
@@ -63,39 +62,37 @@ class Tarefa extends Component {
         return (
             <li className='item-lista'>
                 <input
-                    className='task-input-value'
+                    className='tarefa-input-value'
                     type='text'
                     name='texto'
                     value={this.state.tarefa.texto}
-                    style={this.state.stateOne}
+                    style={this.state.invisivel}
                     onChange={this.handleChange}
                 />
                 <input
                     className='checkbox'
-                    style={this.state.stateTwo}
+                    style={this.state.visivel}
                     type='checkbox' name='completo'
                     checked={this.state.tarefa.completo}
                     value={this.state.tarefa.completo}
                     onChange={this.handleChange}
                 />
                 <div className='tarefa-span'>
-                    <span className='tarefa-texto' style={this.state.stateTwo}>{this.state.tarefa.texto}  </span>
+                    <span className='tarefa-texto' style={this.state.visivel}>{this.state.tarefa.texto}</span>
                 </div>
                 <div className='buttons'>
                     <button
                         className='btn-icon'
-                        variant="contained"
-                        color="secondary"
-                        style={this.state.stateTwo}
-                        onClick={deletaTarefa(tarefa.id)}
+                        style={this.state.visivel}
+                        onClick={deletaTarefa(tarefa.texto)}
                     > <FontAwesomeIcon icon={faTrash} /> </button>
                     <button
                         className='btn-icon'
-                        style={this.state.stateTwo}
+                        style={this.state.visivel}
                         onClick={this.toggleEdit}
                     > <FontAwesomeIcon icon={faEdit} /> </button>
                     <button
-                        style={this.state.stateOne}
+                        style={this.state.invisivel}
                         onClick={this.saveEdit}
                         className='btn-icon'
                     > <FontAwesomeIcon icon={faSave} /> </button>
